@@ -1,0 +1,91 @@
+{% extends 'store/base.html' %}
+
+{% block title %}{{ product.name }} - MyShop{% endblock %}
+
+{% block content %}
+
+<!-- Breadcrumb -->
+<nav aria-label="breadcrumb" class="mb-4">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+        <li class="breadcrumb-item active">{{ product.name }}</li>
+    </ol>
+</nav>
+
+<!-- Product Detail -->
+<div class="row g-5">
+    <!-- Product Image -->
+    <div class="col-md-6">
+        <div class="card border-0 shadow-sm rounded-3 overflow-hidden">
+            {% if product.image %}
+                <img src="{{ product.image.url }}" alt="{{ product.name }}"
+                     class="img-fluid" style="max-height: 450px; object-fit: cover;">
+            {% else %}
+                <div class="d-flex align-items-center justify-content-center bg-light" style="height:400px;">
+                    <i class="fas fa-image fa-5x text-muted"></i>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Product Info -->
+    <div class="col-md-6">
+        <span class="badge bg-primary mb-2">{{ product.category }}</span>
+        <h1 class="fw-bold mb-3">{{ product.name }}</h1>
+
+        <div class="mb-3">
+            <span class="fs-2 fw-bold" style="color: #764ba2;">Rs. {{ product.price }}</span>
+        </div>
+
+        <hr>
+
+        <p class="lead text-muted">{{ product.description }}</p>
+
+        <hr>
+
+        <!-- Stock Info -->
+        <div class="mb-4">
+            {% if product.stock > 0 %}
+                <span class="badge bg-success fs-6">
+                    <i class="fas fa-check-circle me-1"></i>In Stock ({{ product.stock }} available)
+                </span>
+            {% else %}
+                <span class="badge bg-danger fs-6">
+                    <i class="fas fa-times-circle me-1"></i>Out of Stock
+                </span>
+            {% endif %}
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="d-grid gap-2">
+            {% if product.stock > 0 %}
+                <a href="{% url 'add_to_cart' product.pk %}" class="btn btn-primary btn-lg">
+                    <i class="fas fa-cart-plus me-2"></i>Add to Cart
+                </a>
+            {% endif %}
+            <a href="{% url 'home' %}" class="btn btn-outline-secondary">
+                <i class="fas fa-arrow-left me-2"></i>Back to Products
+            </a>
+        </div>
+
+        <!-- Extra Info -->
+        <div class="mt-4 p-3 bg-light rounded-3">
+            <div class="row text-center">
+                <div class="col-4">
+                    <i class="fas fa-truck text-primary fs-4"></i>
+                    <p class="small mt-1 mb-0">Free Delivery</p>
+                </div>
+                <div class="col-4">
+                    <i class="fas fa-undo text-primary fs-4"></i>
+                    <p class="small mt-1 mb-0">Easy Returns</p>
+                </div>
+                <div class="col-4">
+                    <i class="fas fa-shield-alt text-primary fs-4"></i>
+                    <p class="small mt-1 mb-0">Secure Payment</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

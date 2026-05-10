@@ -1,0 +1,60 @@
+{% extends 'store/base.html' %}
+
+{% block title %}Login - MyShop{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-5">
+        <div class="card border-0 shadow-sm rounded-3">
+            <div class="card-body p-5">
+
+                <div class="text-center mb-4">
+                    <i class="fas fa-user-circle fa-4x" style="color:#764ba2;"></i>
+                    <h3 class="fw-bold mt-3">Welcome Back!</h3>
+                    <p class="text-muted">Login to your account</p>
+                </div>
+
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Username</label>
+                        <div class="input-group">
+                            <span class="input-group-text">
+                                <i class="fas fa-user"></i>
+                            </span>
+                            <input type="text" name="username"
+                                   class="form-control" placeholder="Enter username" required>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">Password</label>
+                        <div class="input-group">
+                            <span class="input-group-text">
+                                <i class="fas fa-lock"></i>
+                            </span>
+                            <input type="password" name="password"
+                                   class="form-control" placeholder="Enter password" required>
+                        </div>
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="fas fa-sign-in-alt me-2"></i>Login
+                        </button>
+                    </div>
+                </form>
+
+                <hr>
+                <div class="text-center">
+                    <p class="mb-0">Don't have an account?
+                        <a href="{% url 'register' %}" class="text-decoration-none fw-bold"
+                           style="color:#764ba2;">Register here</a>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
