@@ -124,3 +124,8 @@ MESSAGE_TAGS = {
 
 # ── Default Primary Key ───────────────────────────────────────────────────────
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://ecommerceproject-2026-production.up.railway.app',
+]
